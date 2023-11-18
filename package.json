@@ -1,0 +1,19 @@
+{
+  "name": "web-dev-project-node",
+  "version": "1.0.0",
+  "description": "Node.js server for CS4550 project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pacchione-t/web-dev-project-node.git"
+  },
+  "author": "Ty Pacchione",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pacchione-t/web-dev-project-node/issues"
+  },
+  "homepage": "https://github.com/pacchione-t/web-dev-project-node#readme"
+}
