@@ -22,6 +22,14 @@ const sessionOptions = {
     resave: false,
     saveUninitialized: false,
 }; //todo double check sessions options
+const node_env = process.env.NODE_ENV || "development";
+if (node_env !== "development") {
+    sessionOptions.proxy = true;
+    sessionOptions.cookie = {
+      sameSite: "none",
+      secure: true,
+    };
+} 
 app.use(session(sessionOptions));
 
 app.use(express.json());
