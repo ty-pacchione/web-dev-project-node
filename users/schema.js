@@ -5,7 +5,11 @@ const userSchema = new mongoose.Schema({
     firstName: String,
     email: String,
     lastName: String,
-    dob: Date,
+    bio: {
+      type: String,
+      default: "Click Edit to Create a Custom Bio"
+    },
+    dob: {Date},
     role: {
       type: String,
       enum: ["JOB-SEEKING", "JOB-POSTER", "ADMIN"],
