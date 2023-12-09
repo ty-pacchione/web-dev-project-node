@@ -1,6 +1,7 @@
 import express from 'express';
 import session from "express-session";
 import mongoose from "mongoose";
+import FollowsRoutes from "./follows/routes.js";
 import cors from "cors";
 import UserRoutes from "./users/routes.js";
 
@@ -38,7 +39,7 @@ app.use(express.json());
 
 app.get('/', (req, res) => {res.send('Server')})
 
-
+FollowsRoutes(app);
 UserRoutes(app);
 
 app.listen(4000);
