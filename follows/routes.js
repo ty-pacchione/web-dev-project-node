@@ -1,35 +1,40 @@
 import * as dao from "./dao.js";
 
 function FollowsRoutes(app) {
-    const userFollowsUser = async (req, res) => {
-        const follower = req.session["currentUser"]._id
-        const followed = req.params["followed"];
-        const follows = await dao.userFollowsUser(follower, followed);
-        res.json(follows);
-    };
+  const findAllFollows = async (req, res) => {
+    console.log("findAllFollows");
+    const follows = await dao.findAllFollows();
+    res.send(follows);
+  };
+  const createUserFollowsUser = async (req, res) => {
+    const { followerId, followedId } = req.params;
+    const follow = await dao.createUserFollowsUser(followerId, followedId);
+    res.send(follow);
+  };
+  const deleteUserFollowsUser = async (req, res) => {
+    const { followerId, followedId } = req.params;
+    const status = await dao.deleteUserFollowsUser(followerId, followedId);
+    res.send(status);
+  };
+  const findUsersFollowedByUser = async (req, res) => {
+    const { userId } = req.params;
+    const following = await dao.findUsersFollowedByUser(userId);
+    res.send(following);
+  };
+  const findUsersFollowingUser = async (req, res) => {
+    const { userId } = req.params;
+    const followers = await dao.findUsersFollowingUser(userId);
+    res.send(followers);
+  };
 
-    const userUnfollowsUser = async (req, res) => {
-        const follower = req.session["currentUser"]._id
-        const followed = req.params["followed"];
-        const status = await dao.userUnfollowsUser(follower, followed);
-        res.json(status);
-    };
-
-    const findFollowersOfUser = async (req, res) => {
-        const followed = req.params["followed"];
-        const followers = await dao.findFollowersOfUser(followed);
-        res.json(followers);
-    }
-    const findFollowedUsersByUser = async (req, res) => {
-        const follower = req.params["follower"];
-        const followed = await dao.findFollowedUsersByUser(follower);
-        res.json(followed);
-    }
-
-    app.post("/api/users/:followed/follows", userFollowsUser);
-    app.delete("/api/users/:followed/follows", userUnfollowsUser);
-    app.get("/api/users/:followed/followers", findFollowersOfUser);
-    app.get("/api/users/:follower/following", findFollowedUsersByUser);
+  app.get("/api/follows", findAllFollows);
+  app.post("/api/users/:followerId/follows/:followedId", createUserFollowsUser);
+  app.delete(
+    "/api/users/:followerId/follows/:followedId",
+    deleteUserFollowsUser
+  );
+  app.get("/api/users/:userId/following", findUsersFollowedByUser);
+  app.get("/api/users/:userId/followers", findUsersFollowingUser);
 }
 
 export default FollowsRoutes;

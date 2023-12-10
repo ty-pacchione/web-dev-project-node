@@ -1,10 +1,14 @@
 import model from "./model.js";
 
-export const userFollowsUser = (followerId, followedId) =>
-    model.create({follower: followerId, followed: followedId});
-export const userUnfollowsUser = (follower, followed) =>
-    model.deleteOne({follower, followed});
-export const findFollowersOfUser = (followed) =>
-    model.find({followed}).populate("follower");
-export const findFollowedUsersByUser = (follower) =>
-    model.find({follower}).populate("followed");
+export const findAllFollows = () => model.find();
+
+export const createUserFollowsUser = (followerId, followedId) =>
+  model.create({ follower: followerId, followed: followedId });
+export const deleteUserFollowsUser = (followerId, followedId) =>
+  model.deleteOne({ follower: followerId, followed: followedId });
+
+export const findUsersFollowedByUser = (userId) =>
+  model.find({ follower: userId }).populate("followed").exec();
+
+export const findUsersFollowingUser = (userId) =>
+  model.find({ followed: userId }).populate("follower").exec();
