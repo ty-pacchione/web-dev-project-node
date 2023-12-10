@@ -3,6 +3,8 @@ import session from "express-session";
 import mongoose from "mongoose";
 import cors from "cors";
 import UserRoutes from "./users/routes.js";
+import JobRoutes from './jobs/routes.js';
+import BookmarkRoutes from './bookmarks/routes.js';
 
 const MONGOOSE_STRING = process.env.MONGOOSE_STRING || 'mongodb+srv://drdmitre:200ad300ap@davidcluster.fa8cx1t.mongodb.net/WEBDEVPROJECTREMOTE?retryWrites=true&w=majority'; //change todo
 console.log(MONGOOSE_STRING);
@@ -40,5 +42,7 @@ app.get('/', (req, res) => {res.send('Server')})
 
 
 UserRoutes(app);
+JobRoutes(app);
+BookmarkRoutes(app);
 
 app.listen(4000);
