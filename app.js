@@ -7,7 +7,7 @@ import UserRoutes from "./users/routes.js";
 import JobRoutes from './jobs/routes.js';
 import BookmarkRoutes from './bookmarks/routes.js';
 
-const MONGOOSE_STRING = process.env.MONGOOSE_STRING ||  'mongodb://localhost:27017/project';// 'mongodb+srv://drdmitre:200ad300ap@davidcluster.fa8cx1t.mongodb.net/WEBDEVPROJECTREMOTE?retryWrites=true&w=majority'; //change todo
+const MONGOOSE_STRING =  'mongodb://localhost:27017/project'; //process.env.MONGOOSE_STRING ||  'mongodb://localhost:27017/project';// 'mongodb+srv://drdmitre:200ad300ap@davidcluster.fa8cx1t.mongodb.net/WEBDEVPROJECTREMOTE?retryWrites=true&w=majority'; //change todo
 console.log(MONGOOSE_STRING);
 mongoose.connect(MONGOOSE_STRING);
 const app = express();
